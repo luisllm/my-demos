@@ -87,7 +87,7 @@ jobs:
     name: "Delete the EKS cluster and VPC"
     runs-on: ubuntu-latest
     #environment: $ENVIRONMENT
-    needs: [destroy_public_ingress, destroy_postgres, destroy_public_lb_aws_parameterstore, destroy_monitoring]
+    needs: [destroy_public_ingress, destroy_public_lb_aws_parameterstore, destroy_monitoring]
     defaults:
       run:
         working-directory: terraform-code/vpc-eks
