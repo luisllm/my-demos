@@ -324,9 +324,9 @@ jobs:
 
       - name: Create Crossplane ControllerConfig, Provider and ProviderConfig 
         run: |
-          sed "s/iam_role_arn_changeme/$IAM_ROLE_ARN/g" ControllerConfig.yaml > ControllerConfig-replaced.yaml
+          sed "s|iam_role_arn_changeme|$IAM_ROLE_ARN|g" ControllerConfig.yaml > ControllerConfig-replaced.yaml
           kubectl apply -f ControllerConfig-replaced.yaml
-          sed "s/upbound_provider_aws_s3_version_changeme/$UPBOUND_PROVIDER_AWS_S3_VERSION/g" Provider.yaml > Provider-replaced.yaml
+          sed "s|upbound_provider_aws_s3_version_changeme|$UPBOUND_PROVIDER_AWS_S3_VERSION|g" Provider.yaml > Provider-replaced.yaml
           kubectl apply -f Provider-replaced.yaml
           kubectl apply -f ProviderConfig.yaml
 
