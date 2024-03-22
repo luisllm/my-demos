@@ -5,7 +5,7 @@ resource "aws_iam_role" "test-crossplane-iam-role" {
     #OIDC_URL  = replace(module.eks_cluster.cluster_oidc_issuer_url.0.url, "https://", ""),
     OIDC_URL = module.eks.oidc_provider,
     NAMESPACE = "*",
-    SA_NAME   = "system:serviceaccount:crossplane-system:provider-aws-*"
+    SA_NAME   = "crossplane-system:provider-aws-*"
   })
   depends_on = [module.eks.oidc_provider]
 
