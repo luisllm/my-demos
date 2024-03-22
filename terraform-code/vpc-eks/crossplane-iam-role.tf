@@ -1,5 +1,5 @@
 resource "aws_iam_role" "test-crossplane-iam-role" {
-  name  = "${local.SystemName}-test-crossplane-iam-role"
+  name  = "${local.system_name}-test-crossplane-iam-role"
   assume_role_policy = templatefile("templates/oidc_assume_role_policy.json", {
     OIDC_ARN  = module.eks.oidc_provider_arn,
     #OIDC_URL  = replace(module.eks_cluster.cluster_oidc_issuer_url.0.url, "https://", ""),
