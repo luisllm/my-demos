@@ -314,9 +314,6 @@ jobs:
             --create-namespace crossplane-stable/crossplane \
             --version $CROSSPLANE_CHART_VERSION
 
-      - name: list files
-        run: ls -ltr
-
       # Get from AWS ParameterStore the IAM Role ARN for the Crossplane ServiceAccount
       # The IAM Role was created by Terraform
       - name: Get IAM Role from ParameterStore
@@ -327,12 +324,14 @@ jobs:
 
       - name: Create Crossplane ControllerConfig, Provider and ProviderConfig 
         run: |
-          sed "s/IAM_ROLE_ARN/$IAM_ROLE_ARN/g" ControllerConfig.yaml > ControllerConfig-replaced.yaml
+          sed "s/iam_role_arn_changeme/$IAM_ROLE_ARN/g" ControllerConfig.yaml > ControllerConfig-replaced.yaml
           kubectl apply -f ControllerConfig-replaced.yaml
-          sed "s/UPBOUND_PROVIDER_AWS_S3_VERSION/$UPBOUND_PROVIDER_AWS_S3_VERSION/g" Provider.yaml > Provider-replaced.yaml
+          sed "s/upbound_provider_aws_s3_version_changeme/$UPBOUND_PROVIDER_AWS_S3_VERSION/g" Provider.yaml > Provider-replaced.yaml
           kubectl apply -f Provider-replaced.yaml
           kubectl apply -f ProviderConfig.yaml
 
+
+      
 
   # Test and verify the infra was deployed correctly
   test_infra:
