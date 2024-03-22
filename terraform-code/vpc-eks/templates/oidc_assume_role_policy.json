@@ -9,7 +9,7 @@
         "Action": "sts:AssumeRoleWithWebIdentity",
         "Condition": {
           "StringLike": {
-            "${OIDC_URL}:sub": "system:serviceaccount:${NAMESPACE}:${SA_NAME}",
+            "${OIDC_URL}:sub": "system:serviceaccount:${SA_NAME}",
             "${OIDC_URL}:aud": "sts.amazonaws.com"
           }
         }
