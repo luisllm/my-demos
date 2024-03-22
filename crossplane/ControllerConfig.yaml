@@ -3,5 +3,5 @@ kind: ControllerConfig
 metadata:
   name: irsa-controllerconfig
   annotations:
-    eks.amazonaws.com/role-arn: <IAM_ROLE_ARN>
+    eks.amazonaws.com/role-arn: IAM_ROLE_ARN
 spec: {}
