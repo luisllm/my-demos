@@ -328,6 +328,7 @@ jobs:
           kubectl apply -f ControllerConfig-replaced.yaml
           sed "s|upbound_provider_aws_s3_version_changeme|$UPBOUND_PROVIDER_AWS_S3_VERSION|g" Provider.yaml > Provider-replaced.yaml
           kubectl apply -f Provider-replaced.yaml
+          sleep 5s
           kubectl apply -f ProviderConfig.yaml
 
 
@@ -364,7 +365,7 @@ jobs:
     name: "Test infra"
     runs-on: ubuntu-latest
     #environment: $ENVIRONMENT
-    needs: [deploy_vpc_and_eks, deploy_monitoring, ingress_deployment, public_ingress_lb_discovery, metrics_server_deployment, crossplane_deployment]
+    needs: [deploy_vpc_and_eks, deploy_monitoring, ingress_deployment, public_ingress_lb_discovery, metrics_server_deployment, crossplane_deployment, deploy_s3bucket]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
