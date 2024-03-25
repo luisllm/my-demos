@@ -21,6 +21,31 @@ env:
   TEST_NAMESPACE: "demo-test"
 
 jobs:
+  # Destroy S3 bucket with Crossplane
+  destroy_s3bucket:
+    name: "Destroy S3 bucket"
+    runs-on: ubuntu-latest
+    #environment: $ENVIRONMENT
+    defaults:
+      run:
+        working-directory: crossplane
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+
+      - name: Update kube config
+        run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
+
+      - name: "Deploy S3 bucket"
+        run: kubectl delete -f s3bucket.yaml
+
   destroy_monitoring:
     name: "Delete Prometheus and Grafana"
     runs-on: ubuntu-latest
