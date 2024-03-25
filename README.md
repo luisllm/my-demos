@@ -1,6 +1,6 @@
 # Description
 
-Demo that does the following:
+Github action that does the following:
 - Deploys a VPC with an EKS cluster
 - Deploys Crossplane in the EKS cluster
 - Deploys an S3 bucket with Crossplane
