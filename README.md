@@ -5,6 +5,8 @@ Github action that does the following:
 - Deploys Crossplane in the EKS cluster
 - Deploys an S3 bucket with Crossplane
 
+![image workflow](./images/workflow.jpg)
+
 # References
 
 https://docs.crossplane.io/latest/software/install/
